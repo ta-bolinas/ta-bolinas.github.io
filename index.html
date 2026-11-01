@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tawny A. Bolinas · Microbial Ecology</title>
+<meta name="description" content="Tawny A. Bolinas, microbial ecologist studying how foliar fungal endophytes shape decomposer communities in leaf litter.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     COLORS & FONTS — change these to restyle the whole site
+     ============================================================ */
+  :root {
+    --cream: #F4FAD6;
+    --ink:   #0B0B09;
+    --moss:  #3A4530;   /* neutral green used in place of black on some sections */
+    --forest: #232B1E;  /* darkest green: replaces black on dark sections and footer */
+    --sage:  #A9BF86;   /* light green accent for small labels */
+    --line-dark:  rgba(244, 250, 214, 0.2);
+    --line-light: rgba(11, 11, 9, 0.16);
+    --serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+    --sans:  "Jost", "Helvetica Neue", Arial, sans-serif;
+    --pad:   clamp(1.5rem, 6vw, 5.5rem);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font: 300 1rem/1.65 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; line-height: 1.04; }
+  h2 { font-size: clamp(2.2rem, 4.6vw, 3.4rem); }
+  p { margin: 0 0 1.1em; max-width: 64ch; }
+  .serif-i { font-family: var(--serif); font-style: italic; }
+
+  .meta {
+    font-family: var(--serif); font-style: italic; font-size: 1.1rem;
+    opacity: .85; margin: .9rem 0 1.6rem;
+  }
+
+  /* Photo slots. Set the image with --src and the crop with --pos. */
+  .photo {
+    background-image: var(--src);
+    background-size: cover;
+    background-position: var(--pos, center);
+    background-color: #2a3a18;
+  }
+  .shade { position: absolute; inset: 0; background: rgba(0, 0, 0, var(--shade, .3)); }
+
+  /* Buttons */
+  .pill {
+    display: inline-block; padding: .85rem 2.4rem; border-radius: 999px;
+    background: var(--cream); color: var(--ink); font-size: .9rem; text-decoration: none;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  .pill:hover { transform: translateY(-2px); opacity: .92; }
+  .pill.dark { background: var(--forest); color: var(--cream); }
+  .pill.ghost { background: transparent; color: var(--cream); box-shadow: inset 0 0 0 1px var(--line-dark); }
+  .pill.ghost:hover { box-shadow: inset 0 0 0 1px var(--cream); opacity: 1; }
+  .pill.sm { padding: .45rem 1.1rem; font-size: .8rem; }
+  .pill[target="_blank"]::after, a.pdf::after { content: " ↗"; opacity: .6; }
+
+  /* ---------- nav ---------- */
+  nav {
+    position: absolute; top: 0; left: 0; right: 0; z-index: 3;
+    display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    padding: 1.4rem var(--pad); color: var(--cream);
+  }
+  nav .mark { font-family: var(--serif); font-size: 1.35rem; text-decoration: none; }
+  nav ul { list-style: none; display: flex; gap: clamp(.9rem, 2.4vw, 2rem); margin: 0; padding: 0; }
+  nav ul a { text-decoration: none; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; }
+  nav ul a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative; min-height: 100vh; min-height: 100svh;
+    display: grid; place-items: center; text-align: center;
+    color: var(--cream); padding: 7rem 1.25rem 4rem; overflow: hidden;
+  }
+  .hero > .photo { position: absolute; inset: 0; }
+  .hero .inner { position: relative; z-index: 2; }
+  .hero h1 { font-size: clamp(3.2rem, 9.5vw, 7rem); text-shadow: 0 2px 30px rgba(0,0,0,.25); }
+  .hero h1 em { display: block; }
+  .hero p { margin: 1.8rem auto 2.6rem; font-size: clamp(1rem, 1.6vw, 1.15rem); }
+
+  /* ---------- about ---------- */
+  .split { display: grid; grid-template-columns: 1fr 1fr; }
+  .dark-block  { background: var(--forest); color: var(--cream); padding: var(--pad); }
+  .light-block { background: var(--cream); color: var(--ink);   padding: var(--pad); }
+  .dark-block.green, .other.green, .press-wrap.green { background: var(--moss); }
+  .split h2 { margin-bottom: 1.8rem; }
+  .portrait { aspect-ratio: 4 / 5; max-width: 26rem; margin: 2.2rem 0 2.4rem; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: .8rem; }
+
+  .work { list-style: none; margin: 0 0 3rem; padding: 0; display: grid; gap: 1.6rem; }
+  .work a {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1.6rem; align-items: center; text-decoration: none;
+  }
+  .work .thumb { aspect-ratio: 16 / 9; }
+  .work strong { display: block; font-weight: 400; font-size: 1.02rem; line-height: 1.4; }
+  .work span { font-family: var(--serif); font-style: italic; font-size: 1.02rem; opacity: .75; }
+  .work a:hover strong { text-decoration: underline; text-underline-offset: 4px; }
+
+  .honors h3 { font-size: 1.6rem; margin-bottom: .6rem; }
+  .honors ul { list-style: none; margin: 0; padding: 0; }
+  .honors li {
+    display: grid; grid-template-columns: 3.4rem 1fr; gap: .8rem;
+    padding: .7rem 0; border-top: 1px solid var(--line-light); font-size: .95rem;
+  }
+  .honors li span { font-family: var(--serif); font-style: italic; font-size: 1.05rem; }
+
+  /* ---------- research ---------- */
+  .framed { padding: var(--pad); }
+  .frame {
+    position: relative; min-height: 72vh; display: grid; place-items: center;
+    text-align: center; color: var(--cream); padding: 3rem clamp(1.25rem, 8vw, 7rem); overflow: hidden;
+  }
+  .frame > .photo { position: absolute; inset: 0; }
+  .frame .inner { position: relative; z-index: 2; }
+  .frame h2 { font-size: clamp(2.6rem, 6vw, 4.6rem); margin-bottom: 1.4rem; }
+  .frame p { margin: 0 auto; font-size: clamp(1rem, 1.5vw, 1.15rem); }
+
+  .project { display: grid; grid-template-columns: 1fr 1.5fr; min-height: 80vh; }
+  .project.flip { grid-template-columns: 1.5fr 1fr; }
+  .project.flip > .photo { order: 2; }
+  .project .dark-block { display: flex; flex-direction: column; justify-content: center; }
+  .project h2 { font-size: clamp(2.5rem, 5vw, 4.2rem); }
+  .project .btn-row { margin-top: .6rem; }
+  .award {
+    display: inline-flex; align-items: baseline; gap: .9rem; align-self: flex-start;
+    border: 1px solid var(--cream); border-radius: 999px; padding: .55rem 1.3rem;
+    font-size: .92rem; margin: 0 0 1.6rem;
+  }
+  .award span { font-family: var(--serif); font-style: italic; font-size: 1.1rem; }
+  .frame .areas {
+    font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.1rem); max-width: none;
+  }
+  .frame .areas b { font-weight: 400; white-space: nowrap; }
+  .frame .areas span { font-size: .5em; vertical-align: middle; margin: 0 .7em; opacity: .85; }
+
+  .other { background: var(--forest); color: var(--cream); padding: var(--pad); }
+  .other h2 { margin-bottom: 2.2rem; }
+  .other-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.4rem 2.2rem; }
+  @media (max-width: 1100px) { .other-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px)  { .other-grid { grid-template-columns: 1fr; } }
+  .other-grid article { border-top: 1px solid var(--line-dark); padding-top: 1.1rem; display: flex; flex-direction: column; }
+  .other-grid h3 { font-size: 1.45rem; margin-bottom: .3rem; }
+  .other-grid .when { display: block; font-family: var(--serif); font-style: italic; opacity: .75; margin-bottom: .6rem; }
+  .other-grid p { font-size: .93rem; margin: 0 0 1rem; }
+  .other-grid .btn-row { gap: .5rem; margin-top: auto; }
+
+  /* ---------- photos ---------- */
+  .photos { background: var(--forest); color: var(--cream); padding: var(--pad); }
+  .eyebrow { font-size: .8rem; letter-spacing: .22em; text-transform: uppercase; color: var(--sage); margin: 0 0 1.4rem; font-weight: 400; }
+  .photos h2 { font-size: clamp(3rem, 7vw, 5.2rem); }
+  .rule { width: 4.5rem; height: 1px; background: var(--line-dark); border: 0; margin: 2.2rem 0; }
+  .tabs { display: flex; flex-wrap: wrap; gap: .7rem; margin-bottom: 2.4rem; }
+  .tab {
+    font: 400 .85rem var(--sans); letter-spacing: .08em; color: rgba(244,250,214,.7);
+    background: transparent; border: 1px solid var(--line-dark); border-radius: 6px;
+    padding: .6rem 1.3rem; cursor: pointer;
+  }
+  .tab:hover { color: var(--cream); border-color: rgba(244,250,214,.45); }
+  .tab[aria-pressed="true"] { background: #4B5E37; border-color: #4B5E37; color: var(--cream); }
+  .gallery { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: .8rem; }
+  @media (max-width: 1100px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
+  .gallery li[hidden] { display: none; }
+  .gallery button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; overflow: hidden; }
+  .gallery img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: transform .4s ease, opacity .3s ease; }
+  .gallery button:hover img { transform: scale(1.03); }
+  .gallery button:focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; }
+
+  .lightbox { border: 0; padding: 0; background: transparent; max-width: 100vw; max-height: 100vh; width: 100vw; height: 100vh; }
+  .lightbox::backdrop { background: rgba(15, 19, 12, .92); }
+  .lightbox[open] { display: grid; place-items: center; }
+  .lightbox img { max-width: min(92vw, 1100px); max-height: 84vh; object-fit: contain; display: block; }
+  .lb-btn {
+    position: fixed; background: rgba(35,43,30,.7); color: var(--cream); border: 1px solid var(--line-dark);
+    width: 3rem; height: 3rem; border-radius: 50%; font: 300 1.6rem/1 var(--sans); cursor: pointer;
+    display: grid; place-items: center;
+  }
+  .lb-btn:hover { background: #4B5E37; }
+  .lb-close { top: 1.2rem; right: 1.2rem; }
+  .lb-prev { left: 1.2rem; top: 50%; transform: translateY(-50%); }
+  .lb-next { right: 1.2rem; top: 50%; transform: translateY(-50%); }
+  .lb-count { position: fixed; bottom: 1.2rem; left: 0; right: 0; text-align: center; color: var(--cream); font-size: .85rem; letter-spacing: .1em; margin: 0; max-width: none; }
+
+  /* ---------- publications ---------- */
+  .pubs { padding: var(--pad); }
+  .pubs h2 { margin-bottom: 1rem; }
+  .pubs h3 { font-size: 1.6rem; font-style: italic; margin: 2.6rem 0 .6rem; }
+  .pub {
+    display: grid; grid-template-columns: 5.5rem 1fr; gap: 1.2rem;
+    padding: 1rem 0; border-top: 1px solid var(--line-light);
+  }
+  .list > .pub:last-child { border-bottom: 1px solid var(--line-light); }
+  .pub .yr { font-family: var(--serif); font-style: italic; font-size: 1.15rem; }
+  .pub p { margin: 0; max-width: 80ch; }
+  .pub .tag { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; opacity: .6; white-space: nowrap; }
+  .pub a { text-underline-offset: 3px; }
+  details { margin-top: 2.6rem; }
+  summary {
+    cursor: pointer; font-family: var(--serif); font-style: italic; font-size: 1.6rem;
+    list-style: none; display: flex; align-items: baseline; gap: .8rem;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "Show"; font: 400 .75rem var(--sans); letter-spacing: .12em; text-transform: uppercase; opacity: .6; }
+  details[open] summary::after { content: "Hide"; }
+  details .list { margin-top: .6rem; }
+  .note { font-size: .85rem; opacity: .7; margin-top: 1rem; }
+
+  /* ---------- press ---------- */
+  .press-wrap { background: var(--ink); padding: var(--pad); }
+  .press-card { position: relative; overflow: hidden; padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.25rem, 6vw, 5rem); }
+  .press-card > .photo { position: absolute; inset: 0; }
+  .press-card .inner { position: relative; z-index: 2; max-width: 50rem; margin: 0 auto; }
+  .press-card h2 { color: var(--cream); text-align: center; margin-bottom: 2rem; }
+  .press-list { background: var(--cream); color: var(--ink); list-style: none; margin: 0; padding: .4rem 1.6rem; }
+  .press-list li { padding: 1rem 0; border-bottom: 1px solid var(--line-light); }
+  .press-list li:last-child { border-bottom: 0; }
+  .press-list .when { display: block; font-family: var(--serif); font-style: italic; font-size: 1rem; opacity: .7; }
+  .press-list a { text-decoration: none; }
+  .press-list a::after { content: " ↗"; opacity: .5; }
+  .press-list a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* ---------- contact ---------- */
+  .contact { position: relative; padding: var(--pad); text-align: center; color: var(--cream); overflow: hidden; }
+  .contact > .photo { position: absolute; inset: 0; }
+  .contact .inner { position: relative; z-index: 2; max-width: 44rem; margin: 0 auto; }
+  .contact h2 { font-size: clamp(3rem, 7vw, 5rem); margin-bottom: 1.2rem; }
+  .contact .inner > p { margin: 0 auto 2.4rem; }
+  .socials { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.1rem; }
+  .socials a {
+    display: grid; place-items: center; width: 3.6rem; height: 3.6rem; border-radius: 50%;
+    background: var(--cream); color: var(--forest); text-decoration: none;
+    transition: transform .2s ease, background .2s ease, color .2s ease;
+  }
+  .socials a:hover, .socials a:focus-visible { transform: translateY(-3px); background: var(--forest); color: var(--cream); outline: none; box-shadow: 0 0 0 1px var(--cream); }
+  .socials svg { width: 1.45rem; height: 1.45rem; }
+  .socials .txt { font: 400 .78rem var(--sans); letter-spacing: .08em; }
+  .socials a[target]::after { content: none; }
+
+  /* ---------- outreach ---------- */
+  .outreach { padding: var(--pad); }
+  .outreach h2 { margin-bottom: 2.2rem; }
+  .outreach-item {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 2.4rem;
+    border-top: 1px solid var(--line-light); padding-top: 1.6rem;
+  }
+  .outreach-item h3 { font-size: 1.9rem; }
+  .outreach-item .meta { margin: .5rem 0 0; }
+  .outreach-item p { margin-bottom: 1.4rem; }
+  @media (max-width: 860px) { .outreach-item { grid-template-columns: 1fr; gap: 1rem; } }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+  footer { background: var(--forest); color: var(--cream); text-align: center; padding: 1.6rem; font-size: .8rem; }
+
+  /* ---------- small screens ---------- */
+  @media (max-width: 860px) {
+    .split, .project, .project.flip { grid-template-columns: 1fr; }
+    .project { min-height: 0; }
+    .project > .photo { min-height: 62vw; }
+    .project.flip > .photo { order: 0; }
+    nav { flex-direction: column; gap: .7rem; }
+    nav ul { flex-wrap: wrap; justify-content: center; }
+    .pub { grid-template-columns: 1fr; gap: .15rem; }
+    .portrait { max-width: none; }
+    .gallery { grid-template-columns: repeat(2, 1fr); gap: .6rem; }
+    .lb-prev, .lb-next { top: auto; bottom: 1rem; transform: none; }
+    .lb-count { bottom: 1.9rem; }
+  }
+  @media (max-width: 480px) {
+    .work a { grid-template-columns: 1fr; gap: .8rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .pill, .socials a, .gallery img { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Photos live in assets/img/. To swap one, replace the file or change the
+     --src:url('...') value on that section. --pos sets which part is shown. -->
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="photo" role="img" aria-label="Looking up through a tree canopy at blue sky" style="--src:url('assets/img/canopy.jpg'); --pos:center"></div>
+  <div class="shade" style="--shade:.4"></div>
+
+  <nav aria-label="Main">
+    <a class="mark" href="#top">T. A. Bolinas</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#photos">Photos</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#press">Press</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="inner">
+    <h1>Tawny A. Bolinas<em>Microbial Ecology</em></h1>
+    <p>Plant–fungal interactions and ecosystem functioning</p>
+    <a class="pill" href="#research">View research</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= ABOUT ================= -->
+<section class="split" id="about">
+  <div class="dark-block green">
+    <h2>Hi, I’m <em>Tawny</em></h2>
+    <p>I am a faculty member in the Biological Sciences Department at Butte College and a board member of the Friends of the Ahart Herbarium. I study how foliar fungal endophytes shape the fungal communities that decompose leaf litter.</p>
+    <p class="meta">M.S. Microbial Ecology, California State University, Chico</p>
+    <div class="photo portrait" role="img" aria-label="Tawny Bolinas on a trail through a redwood forest with ferns" style="--src:url('assets/img/portrait.jpg'); --pos:center 60%"></div>
+    <div class="btn-row">
+      <a class="pill" href="cv.pdf">Download CV</a>
+    </div>
+  </div>
+
+  <div class="light-block">
+    <h2><em>Current</em> Work</h2>
+    <ul class="work">
+      <li><a href="#thesis">
+        <div class="photo thumb" role="img" aria-label="" style="--src:url('assets/img/meadow.jpg'); --pos:center 25%"></div>
+        <div><strong>Endophyte priority effects in valley oak litter</strong><span>M.S. thesis, 2023–2025</span></div>
+      </a></li>
+      <li><a href="#research">
+        <div class="photo thumb" role="img" aria-label="" style="--src:url('assets/img/ocean.jpg'); --pos:center"></div>
+        <div><strong>Fungal community assembly in marine and island systems</strong><span>Ph.D. direction</span></div>
+      </a></li>
+    </ul>
+
+    <div class="honors">
+      <h3><em>Selected</em> honors</h3>
+      <ul>
+        <li><span>2026</span>Outstanding Master’s Thesis, Office of Graduate Studies, CSU Chico</li>
+        <li><span>2025</span>Chico State Student Hall of Fame</li>
+        <li><span>2024</span>Charles Mims Travel Award, Mycological Society of America</li>
+        <li><span>2023</span>ARI NextGen Fellow, USDA National Institute of Food and Agriculture (2023–2025)</li>
+        <li><span>2023</span>Graduate Equity Fellowship (2023–2025)</li>
+        <li><span>2023</span>Wes Dempsey Field Research Award</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESEARCH ================= -->
+<section class="framed" id="research">
+  <div class="frame">
+    <div class="photo" role="img" aria-label="Motion-blurred pink flowers and green leaves" style="--src:url('assets/img/bloom.jpg')"></div>
+    <div class="shade" style="--shade:.38"></div>
+    <div class="inner">
+      <h2>Research <em>focus</em></h2>
+      <p class="areas"><b>Mycology</b> <span aria-hidden="true">●</span> <b>Community Ecology</b> <span aria-hidden="true">●</span> <b>Bioinformatics</b></p>
+    </div>
+  </div>
+</section>
+
+<section class="project" id="thesis">
+  <div class="photo" role="img" aria-label="A lone tree on a grassy hill" style="--src:url('assets/img/meadow.jpg'); --pos:50% 30%"></div>
+  <div class="dark-block">
+    <h2>Priority <em>Effects</em></h2>
+    <p class="meta">M.S. thesis · CSU Chico · 2023–2025 · Advisor: Dr. Gerald M. Cobián</p>
+    <p class="award"><span>2026</span>Outstanding Master’s Thesis Award, Office of Graduate Studies</p>
+    <p>Some foliar endophytic fungi may stay dormant in leaves until senescence, then begin decomposition and, through priority effects, shape the decomposer fungi that arrive later. I tested this with a 36-week field experiment using valley oak (<em>Quercus lobata</em>) litter in mesh litterbags assigned to three treatments: endophytes only, external fungi, and both combined. Fungal communities were tracked with ITS high-throughput sequencing, yielding 515 OTUs at 97% similarity, mostly Ascomycota and Basidiomycota.</p>
+    <p>Community composition was shaped mainly by site, with species turnover driving most differences, and decomposition rates did not differ among treatments. Indicator species analysis identified distinct OTUs for each treatment. Endophytes imposed weak priority effects under field conditions, and long-term community assembly was more strongly shaped by site-specific stochastic processes.</p>
+    <div class="btn-row">
+      <a class="pill" href="https://media.csuchico.edu/media/Priority+Effects+of+Foliar+Fungal+Endophytes+in+Leaf+Litter+Decomposition%2C+Tawny+Bolinas-ATBR/1_1fp4nozp" target="_blank" rel="noopener">Watch the Ahart Herbarium talk</a>
+      <a class="pill ghost" href="docs/poster-2025-thesis.pdf" target="_blank" rel="noopener">Poster (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<section class="project flip" id="overlap">
+  <div class="photo" role="img" aria-label="Autumn forest edge around a meadow" style="--src:url('assets/img/autumn.jpg'); --pos:30% center"></div>
+  <div class="dark-block green">
+    <h2>Endophytes to <em>Decomposers</em></h2>
+    <p class="meta">Undergraduate research · CSU Chico · 2020–2022 · Advisor: Dr. Gerald M. Cobián</p>
+    <p class="award"><span>2022</span>People’s Choice Award, Undergraduate Research, College of Natural Sciences</p>
+    <p>Foliar fungal endophytes colonize plant leaves without obvious harm to the host, and many are thought to be commensals that wait for leaves to senesce. Fungi are the primary decomposers of leaf litter, but how much endophyte and decay communities overlap is not well understood. To measure that overlap, fungal DNA was extracted from surface-sterilized canyon live oak (<em>Quercus chrysolepis</em>) leaves and litter at Big Chico Creek Ecological Reserve, and both communities were characterized with high-throughput amplicon sequencing and compared using alpha and beta diversity.</p>
+    <p>Endophyte and decay communities differed significantly, with fewer than 25% of taxa occurring in both substrates. This partial overlap suggests that some foliar endophytes act as early colonizers and may influence the composition of leaf decay communities.</p>
+    <div class="btn-row">
+      <a class="pill" href="docs/poster-2022-oak-overlap.pdf" target="_blank" rel="noopener">Poster (PDF)</a>
+    </div>
+  </div>
+</section>
+
+<section class="other green">
+  <h2>Other research <em>experience</em></h2>
+  <div class="other-grid">
+    <article>
+      <h3>Optimizing fungal DNA extraction</h3>
+      <span class="when">2024 · Adelante Summer Research · PI: Gerald M. Cobián</span>
+      <p>Compared lysing bead matrices (F, J, I) and buffer volumes for extracting endophyte DNA from valley oak leaves. Matrix F with 350 µL of buffer, increased to 400 µL, each step with 2 minutes of homogenization, gave the strongest PCR amplification.</p>
+      <div class="btn-row">
+        <a class="pill sm ghost" href="docs/abstract-dna-optimization-2024.pdf" target="_blank" rel="noopener">Abstract</a>
+        <a class="pill sm ghost" href="https://journals.calstate.edu/adelante/article/view/6537" target="_blank" rel="noopener">Article</a>
+      </div>
+    </article>
+    <article>
+      <h3>Eliminating foliar endophytes</h3>
+      <span class="when">2023 · Adelante Summer Research · PI: Gerald M. Cobián</span>
+      <p>With no irradiation facilities nearby, tested autoclave time and temperature combinations for sterilizing valley oak leaves. 75 °C for 15 minutes was the lowest treatment that fully eliminated foliar endophytes, setting the method for the thesis field experiment.</p>
+      <div class="btn-row">
+        <a class="pill sm ghost" href="docs/abstract-pilot-study-2023.pdf" target="_blank" rel="noopener">Abstract</a>
+      </div>
+    </article>
+    <article>
+      <h3>From cells to ecosystems</h3>
+      <span class="when">2024 · with P. Amezcua, G. Loera, J. Ortega Soto, C. Hatfield</span>
+      <p>Group poster tracing evolutionary change across biological scales, from antler phenotypes and rodent models to fungal community assembly and the shift from cellular to acellular bone in teleost fish.</p>
+      <div class="btn-row">
+        <a class="pill sm ghost" href="docs/abstract-cells-to-ecosystems-2024.pdf" target="_blank" rel="noopener">Abstract</a>
+      </div>
+    </article>
+    <article>
+      <h3>Wastewater surveillance</h3>
+      <span class="when">2021–2022 · PIs: Troy Cline, Gerald M. Cobián</span>
+      <p>Tracked SARS-CoV-2 in bi-weekly composite wastewater samples from nine residence halls by RT-qPCR targeting the N1 gene. RNA trends reflected campus prevention measures and gave early warning of case increases.</p>
+      <div class="btn-row">
+        <a class="pill sm ghost" href="docs/abstract-wastewater-2022.pdf" target="_blank" rel="noopener">Abstract</a>
+        <a class="pill sm ghost" href="docs/poster-2022-wastewater.pdf" target="_blank" rel="noopener">Poster</a>
+      </div>
+    </article>
+    <article>
+      <h3>Stem cell–conditioned media</h3>
+      <span class="when">2022 · PI: David Stachura</span>
+      <p>Double-blind trial in mice testing stem cell–conditioned media, PGE2, minoxidil, and redensyl for androgenetic alopecia. All treatments accelerated hair growth in preliminary results, and combined factors worked best.</p>
+      <div class="btn-row">
+        <a class="pill sm ghost" href="docs/abstract-alopecia-2022.pdf" target="_blank" rel="noopener">Abstract</a>
+        <a class="pill sm ghost" href="docs/poster-2022-alopecia.pdf" target="_blank" rel="noopener">Poster</a>
+      </div>
+    </article>
+    <article>
+      <h3>Advanced imaging</h3>
+      <span class="when">2023 · UC Davis &amp; HHMI Janelia</span>
+      <p>Emerging Scientist Imaging Workshop: transmitted light, widefield fluorescence, confocal, and image scanning microscopy, with quantitative fluorescence analysis.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ================= OUTREACH ================= -->
+<section class="outreach" id="outreach">
+  <h2><em>Outreach</em></h2>
+  <div class="outreach-item">
+    <div>
+      <h3>Friends of the Ahart Herbarium</h3>
+      <p class="meta">Board Member · 2026–present</p>
+    </div>
+    <div>
+      <p>The Friends of the Ahart Herbarium supports the Ahart Herbarium at Chico State, the most complete collection of plant specimens from northeastern California, with more than 100,000 specimens of vascular plants, bryophytes, lichens, and slime molds. The group promotes research, education, and preservation of Northern California’s native plant diversity through workshops, events, and its annual meeting.</p>
+      <div class="btn-row">
+        <a class="pill dark" href="https://friendsoftheahartherbarium.org/" target="_blank" rel="noopener">Visit Friends of the Ahart Herbarium</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PHOTOS =================
+     To add a photo: put it in assets/img/gallery/ and copy one <li> below.
+     data-cat="fungi" puts it under Fungallery, data-cat="field" under Fieldwork,
+     and data-cat="research" under Research.
+     A tab with no photos is hidden automatically. -->
+<section class="photos" id="photos">
+  <p class="eyebrow">Fieldwork &amp; Research</p>
+  <h2>Photos</h2>
+  <hr class="rule">
+  <div class="tabs" role="group" aria-label="Filter photos">
+    <button class="tab" data-filter="all" aria-pressed="true">All</button>
+    <button class="tab" data-filter="fungi" aria-pressed="false">Fungallery</button>
+    <button class="tab" data-filter="field" aria-pressed="false">Fieldwork</button>
+    <button class="tab" data-filter="research" aria-pressed="false">Research</button>
+  </div>
+  <ul class="gallery">
+    <li data-cat="fungi"><button><img src="assets/img/gallery/fungi-01.jpg" alt="Cluster of tan mushrooms on a mossy log" loading="lazy"></button></li>
+    <li data-cat="fungi"><button><img src="assets/img/gallery/fungi-02.jpg" alt="Small white mushroom beside a moss-draped branch in a redwood forest" loading="lazy"></button></li>
+    <li data-cat="fungi"><button><img src="assets/img/gallery/fungi-03.jpg" alt="Tiny mushrooms growing on a mossy tree trunk" loading="lazy"></button></li>
+    <li data-cat="fungi"><button><img src="assets/img/gallery/fungi-04.jpg" alt="Small mushrooms in sunlit redwood needle litter" loading="lazy"></button></li>
+    <li data-cat="fungi"><button><img src="assets/img/gallery/fungi-05.jpg" alt="Bolete with a reddish cap in oak leaf litter" loading="lazy"></button></li>
+    <li data-cat="fungi"><button><img src="assets/img/gallery/fungi-06.jpg" alt="Table of collected mushroom specimens" loading="lazy"></button></li>
+    <li data-cat="fungi"><button><img src="assets/img/gallery/fungi-07.jpg" alt="Cluster of gray, shaggy-capped mushrooms in wood chips" loading="lazy"></button></li>
+    <li data-cat="fungi"><button><img src="assets/img/gallery/fungi-08.jpg" alt="Red mushroom with white warts held in a hand" loading="lazy"></button></li>
+    <li data-cat="fungi"><button><img src="assets/img/gallery/fungi-09.jpg" alt="Large white mushroom with yellow gills held in two hands" loading="lazy"></button></li>
+    <li data-cat="fungi"><button><img src="assets/img/gallery/fungi-10.jpg" alt="Three young shaggy mushrooms emerging from grass" loading="lazy"></button></li>
+    <li data-cat="field"><button><img src="assets/img/gallery/field-01.jpg" alt="Two researchers setting out mesh litterbags on the ground" loading="lazy"></button></li>
+    <li data-cat="field"><button><img src="assets/img/gallery/field-02.jpg" alt="Oak tree spreading over a boulder and dry grass at the field site" loading="lazy"></button></li>
+    <li data-cat="field"><button><img src="assets/img/gallery/field-03.jpg" alt="Mesh litterbags among grass and oak leaves" loading="lazy"></button></li>
+    <li data-cat="field"><button><img src="assets/img/gallery/field-04.jpg" alt="Researchers collecting litterbags in a grassy oak woodland" loading="lazy"></button></li>
+  </ul>
+</section>
+
+<dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+  <img src="" alt="">
+  <button class="lb-btn lb-close" aria-label="Close">×</button>
+  <button class="lb-btn lb-prev" aria-label="Previous photo">‹</button>
+  <button class="lb-btn lb-next" aria-label="Next photo">›</button>
+  <p class="lb-count" aria-live="polite"></p>
+</dialog>
+
+<!-- ================= PUBLICATIONS ================= -->
+<section class="pubs" id="publications">
+  <h2>Publications &amp; <em>Presentations</em></h2>
+
+  <h3>Publications</h3>
+  <div class="list">
+    <div class="pub">
+      <div class="yr">In prep.</div>
+      <p><strong>Bolinas TA</strong>, Cobián GM. Priority effects of foliar fungal endophytes in leaf litter decomposition. <span class="tag">Manuscript in preparation</span></p>
+    </div>
+    <div class="pub">
+      <div class="yr">2024</div>
+      <p><strong>Bolinas TA</strong>, Cobián GM. <a href="https://journals.calstate.edu/adelante/article/view/6537">DNA optimization of foliar fungal endophytes in <em>Quercus lobata</em> (valley oak) leaves</a>. <em>Adelante: A Journal of Student Research and Creative Work</em> 4.</p>
+    </div>
+    <div class="pub">
+      <div class="yr">2023</div>
+      <p><strong>Bolinas TA</strong>, Cobián GM. Pilot study: time and temperature to eliminate foliar fungal endophytes. <em>Adelante: A Journal of Student Research and Creative Work</em> 3(1):41.</p>
+    </div>
+  </div>
+
+  <details open>
+    <summary>Oral presentations</summary>
+    <div class="list">
+      <div class="pub"><div class="yr">2025</div><p><strong>Bolinas TA</strong>. Priority effects of foliar fungal endophytes in leaf litter decomposition. Mycological Society of America Conference, <em>Fungal Futures: Cultivating Mycology and Mycologists</em>. Madison, WI.</p></div>
+      <div class="pub"><div class="yr">2025</div><p><strong>Bolinas TA</strong>. Priority effects of foliar fungal endophytes in leaf litter decomposition. Friends of the Ahart Herbarium Annual Meeting and Special Presentations.</p></div>
+      <div class="pub"><div class="yr">2025</div><p><strong>Bolinas TA</strong>. Priority effects of foliar fungal endophytes in leaf litter decomposition. 39th Annual Student Research Symposium. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2024</div><p><strong>Bolinas TA</strong>. Priority effects of foliar fungal endophytes in leaf litter decomposition. Agricultural Research Institute HSI and NextGen Science and Leadership Conference. Sacramento, CA.</p></div>
+      <div class="pub"><div class="yr">2024</div><p><strong>Bolinas TA</strong>, Cobián GM. Priority effects of foliar fungal endophytes in leaf litter decomposition. 38th Student Research Symposium. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2024</div><p><strong>Bolinas TA</strong>, Cobián GM. DNA optimization of foliar fungal endophytes in <em>Quercus lobata</em> leaves. Adelante Summer Research Program. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2024</div><p><strong>Bolinas TA</strong>, Cobián GM. Priority effects of foliar fungal endophytes in leaf litter decomposition. Biology Department Summer Talks. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2023</div><p><strong>Bolinas TA</strong>, Cobián GM. Thesis proposal: Priority effects of foliar fungal endophytes in leaf litter decomposition. Biology Omicron Friday Seminar Series. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2023</div><p><strong>Bolinas TA</strong>, Cobián GM. Pilot study: time and temperature to eliminate foliar fungal endophytes. Adelante Summer Research Program. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2023</div><p><strong>Bolinas TA</strong>, Cobián GM. Thesis proposal: Priority effects of foliar fungal endophytes in leaf litter decomposition. Biology Department Summer Talks. Chico, CA.</p></div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Poster presentations</summary>
+    <div class="list">
+      <div class="pub"><div class="yr">2025</div><p><strong>Bolinas TA</strong>, Cobián GM. Priority effects of foliar fungal endophytes in leaf litter decomposition. Northern California Botanists’ 13th Symposium. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2025</div><p><strong>Bolinas TA</strong>, Cobián GM. Priority effects of foliar fungal endophytes in leaf litter decomposition. 29th Annual Biological Sciences Student Research Symposium. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2025</div><p><strong>Bolinas TA</strong>, Cobián GM. Priority effects of foliar fungal endophytes in leaf litter decomposition. Chico State’s 21st Annual College of Natural Sciences Poster Session. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2024</div><p><strong>Bolinas TA</strong>, Cobián GM. Priority effects of foliar fungal endophytes in leaf litter decomposition. Mycological Society of America Conference, <em>Expanding Networks</em>. Markham, Ontario, Canada.</p></div>
+      <div class="pub"><div class="yr">2024</div><p><strong>Bolinas TA</strong>, Cobián GM. Priority effects of foliar fungal endophytes in leaf litter decomposition. 28th Annual Biological Sciences Student Research Symposium. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2024</div><p><strong>Bolinas TA</strong>, Cobián GM. Priority effects of foliar fungal endophytes in leaf litter decomposition. Chico State’s 20th Annual College of Natural Sciences Poster Session. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2024</div><p>Avila D, <strong>Bolinas TA</strong>*, Cobián GM. Eliminating foliar endophytic fungi from <em>Quercus lobata</em> leaves for studying priority effects in leaf litter fungal communities. Northern California Botanists, 12th Symposium. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2024</div><p><strong>Bolinas TA</strong>*, Amezcua P, Loera G, Ortega-Soto J, Hatfield C. From cells to ecosystems: the pervasive web of evolutionary change. 28th Annual Biological Sciences Student Research Symposium. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2024</div><p><strong>Bolinas TA</strong>*, Amezcua P, Loera G, Ortega-Soto J, Hatfield C. From cells to ecosystems: the pervasive web of evolutionary change. Chico State’s 20th Annual College of Natural Sciences Poster Session. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2023</div><p>Tuttle M, <strong>Bolinas TA</strong>, Anderson Z, Bautista N, Barragan-Mejía N, Hibner S, Cobián GM, Cline T. Wastewater-based surveillance for determination of SARS Coronavirus-2 prevalence in the Chico State University student resident hall population. California State University Biotechnology Symposium. Santa Clara, CA.</p></div>
+      <div class="pub"><div class="yr">2022</div><p><strong>Bolinas TA</strong>, Schultz L, Cobián GM. Community overlap between foliar fungal endophytes and leaf decay fungi associated with <em>Quercus chrysolepis</em> leaves. 26th Annual Biological Sciences Student Research Symposium. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2022</div><p><strong>Bolinas TA</strong>, Schultz L, Cobián GM. Community overlap between foliar fungal endophytes and leaf decay fungi associated with <em>Quercus chrysolepis</em> leaves. 18th Annual College of Natural Sciences Poster Session. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2022</div><p>Tuttle M, <strong>Bolinas TA</strong>, Anderson Z, Bautista N, Barragan-Mejía N, Hibner S, Cobián GM, Cline T. Wastewater surveillance of trends in SARS-CoV-2 prevalence on campus. 26th Annual Biological Sciences Student Research Symposium. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2022</div><p>Tuttle M, <strong>Bolinas TA</strong>, Anderson Z, Bautista N, Barragan-Mejía N, Hibner S, Cobián GM, Cline T. Wastewater surveillance of trends in SARS-CoV-2 prevalence on campus. 18th Annual College of Natural Sciences Poster Session. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2022</div><p><strong>Bolinas TA</strong>, Brewer A, Garcia K, Shahla HA, Rueb K, Stachura D. Stem cell conditioned media aids the successful treatment of androgenetic alopecia (AGA). 26th Annual Biological Sciences Student Research Symposium. Chico, CA.</p></div>
+      <div class="pub"><div class="yr">2022</div><p><strong>Bolinas TA</strong>*, Brewer A, Garcia K, Shahla HA, Rueb K, Stachura D. Stem cell conditioned media aids the successful treatment of androgenetic alopecia (AGA). 18th Annual College of Natural Sciences Poster Session. Chico, CA.</p></div>
+    </div>
+    <p class="note">* Contributed equally to the project</p>
+  </details>
+</section>
+
+<!-- ================= PRESS ================= -->
+<section class="press-wrap green" id="press">
+  <div class="press-card">
+    <div class="photo" role="img" aria-label="Conifers at sunset" style="--src:url('assets/img/forest.jpg'); --pos:center 80%"></div>
+    <div class="shade" style="--shade:.35"></div>
+    <div class="inner">
+      <h2>In the <em>Press</em></h2>
+      <ul class="press-list">
+        <li><span class="when">2025 · Chico State Today</span><a href="https://today.csuchico.edu/tawny-bolinas/">Grad Student Breaks Personal Barriers Studying the Hidden World of Fungi</a></li>
+        <li><span class="when">2025 · HPCwire</span><a href="https://www.hpcwire.com/?p=178441">ACCESS Supercomputing Aids Chico State Research on Fungi’s Role in Carbon Cycling</a></li>
+        <li><span class="when">2025 · U.S. National Science Foundation ACCESS</span><a href="https://access-ci.org/hidden-helpers-among-the-leaves/">Hidden Helpers Among the Leaves</a></li>
+        <li><span class="when">2025 · Mycological Society of America, SPS Newsletter</span><a href="https://msastudents.org/wp-content/uploads/2026/01/MSA-SPS-Newsletter-October-2025.pdf">Student Spotlight</a></li>
+        <li><span class="when">2025 · Associated Students, CSU Chico</span><a href="https://as.csuchico.edu/blog/2025/05/student-hall-of-fame">Associated Students Honorees Inducted into the Chico State Student Hall of Fame</a></li>
+        <li><span class="when">2023 · The California State University</span><a href="https://www.calstate.edu/csu-system/news/Pages/Examples-of-Excelencia-2023.aspx">Setting an Excellent Example</a></li>
+        <li><span class="when">2023 · Chico State Today</span><a href="https://today.csuchico.edu/?p=24914">National Honor Awarded to Chico State Program That Advances the Number of Latinx Students Earning Graduate Degrees</a></li>
+        <li><span class="when">2022 · Chico State Today</span><a href="https://today.csuchico.edu/?p=19414">Poop Sleuths: Student Researchers Track COVID-19 in Residence Halls</a></li>
+        <li><span class="when">2021 · Action News Now</span><a href="https://www.actionnewsnow.com/news/local/students-working-to-stop-spread-of-covid-19-with-new-project/article_210c32b7-386d-584f-9182-b8fe804c4e7a.html">Students working to stop spread of COVID-19 with new project</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="photo" role="img" aria-label="Out-of-focus yellow wildflowers" style="--src:url('assets/img/meadow.jpg'); --pos:center 100%"></div>
+  <div class="shade" style="--shade:.4"></div>
+  <div class="inner">
+    <h2>Say <em>hello</em></h2>
+    <p>For research questions, collaboration, or mentoring, reach me through the links below.</p>
+    <ul class="socials">
+      <li><a href="mailto:bolinasta@butte.edu" title="Email: bolinasta@butte.edu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>
+        <span class="sr-only">Email</span></a></li>
+      <li><a href="https://orcid.org/0009-0005-9203-0008" target="_blank" rel="noopener" title="ORCID: 0009-0005-9203-0008">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/></svg>
+        <span class="sr-only">ORCID</span></a></li>
+      <li><a href="https://www.linkedin.com/in/tawnybolinas" target="_blank" rel="noopener" title="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <span class="sr-only">LinkedIn</span></a></li>
+      <li><a href="https://github.com/ta-bolinas" target="_blank" rel="noopener" title="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        <span class="sr-only">GitHub</span></a></li>
+      <li><a href="cv.pdf" target="_blank" rel="noopener" title="CV (PDF)" aria-label="CV (PDF)">
+        <span class="txt" aria-hidden="true">PDF</span></a></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>© 2026 Tawny A. Bolinas</footer>
+
+<script>
+  // Photos: filter tabs and click-to-enlarge viewer
+  (function () {
+    var items = Array.prototype.slice.call(document.querySelectorAll('.gallery li'));
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+    var box = document.getElementById('lightbox');
+    var big = box.querySelector('img');
+    var count = box.querySelector('.lb-count');
+    var current = 0;
+
+    // Hide any tab (other than All) that has no photos yet
+    tabs.forEach(function (t) {
+      var f = t.dataset.filter;
+      if (f !== 'all' && !items.some(function (li) { return li.dataset.cat === f; })) t.hidden = true;
+      t.addEventListener('click', function () {
+        tabs.forEach(function (o) { o.setAttribute('aria-pressed', String(o === t)); });
+        items.forEach(function (li) { li.hidden = !(f === 'all' || li.dataset.cat === f); });
+      });
+    });
+
+    function visible() { return items.filter(function (li) { return !li.hidden; }); }
+    function show(i) {
+      var list = visible();
+      current = (i + list.length) % list.length;
+      var img = list[current].querySelector('img');
+      big.src = img.src; big.alt = img.alt;
+      count.textContent = (current + 1) + ' / ' + list.length;
+    }
+    items.forEach(function (li) {
+      li.querySelector('button').addEventListener('click', function () {
+        show(visible().indexOf(li));
+        if (box.showModal) box.showModal(); else box.setAttribute('open', '');
+      });
+    });
+    function close() { if (box.close) box.close(); else box.removeAttribute('open'); }
+    box.querySelector('.lb-close').addEventListener('click', close);
+    box.querySelector('.lb-prev').addEventListener('click', function () { show(current - 1); });
+    box.querySelector('.lb-next').addEventListener('click', function () { show(current + 1); });
+    box.addEventListener('click', function (e) { if (e.target === box) close(); });
+    document.addEventListener('keydown', function (e) {
+      if (!box.open) return;
+      if (e.key === 'ArrowLeft') show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
+    });
+  })();
+</script>
+
+</body>
+</html>
