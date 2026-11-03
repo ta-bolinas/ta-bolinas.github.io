@@ -7,7 +7,7 @@
 <meta name="description" content="Tawny A. Bolinas, microbial ecologist studying how foliar fungal endophytes shape decomposer communities in leaf litter.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
 <style>
   /* ============================================================
      COLORS & FONTS — change these to restyle the whole site
@@ -18,6 +18,8 @@
     --moss:  #3A4530;   /* neutral green used in place of black on some sections */
     --forest: #232B1E;  /* darkest green: replaces black on dark sections and footer */
     --sage:  #A9BF86;   /* light green accent for small labels */
+    --fern:  #50663F;   /* light forest green behind the About section */
+    --cedar: #C9D4AE;   /* light sage behind the Research focus panel */
     --line-dark:  rgba(244, 250, 214, 0.2);
     --line-light: rgba(11, 11, 9, 0.16);
     --serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
@@ -97,6 +99,41 @@
   .dark-block.green, .other.green, .press-wrap.green { background: var(--moss); }
   .split h2 { margin-bottom: 1.8rem; }
   .portrait { aspect-ratio: 4 / 5; max-width: 26rem; margin: 2.2rem 0 2.4rem; }
+
+  /* ---------- about (intro) ---------- */
+  .about { background: var(--fern); color: var(--cream); padding: var(--pad); }
+  .about .eyebrow { color: #D6E6B4; }
+  .about h2 { font-size: clamp(3.2rem, 7vw, 5.4rem); margin-bottom: 1.6rem; }
+  .about .eyebrow { margin-bottom: 0; }
+  .about .rule { margin: 1.2rem 0 2.6rem; }
+  .about-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+  .about-text p { font-size: clamp(1.12rem, 1.75vw, 1.42rem); line-height: 1.7; color: rgba(244,250,214,.9); max-width: none; margin-bottom: 1.3em; }
+  .about-text strong { font-weight: 400; color: var(--cream); }
+  .about-text .pill { margin-top: .8rem; }
+  .hobbies { margin-top: 2.6rem; }
+  .about-text .hobbies-label { font-size: .8rem; line-height: 1.4; letter-spacing: .24em; text-transform: uppercase; color: #D6E6B4; margin: 0 0 1rem; }
+  .hobby-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .6rem; }
+  .hobby-chips li {
+    font-size: .95rem; padding: .5rem 1.1rem; border-radius: 999px;
+    border: 1px solid rgba(244,250,214,.3); background: rgba(0,0,0,.1); color: rgba(244,250,214,.85);
+  }
+  .about-side .portrait { margin: 0 0 1.2rem; max-width: none; aspect-ratio: 5 / 4; border-radius: 8px; }
+  .info-card { border: 1px solid rgba(244,250,214,.25); border-radius: 8px; background: rgba(0,0,0,.14); padding: 1.6rem 1.6rem .8rem; }
+  .info-label { font-size: .72rem; letter-spacing: .24em; text-transform: uppercase; color: rgba(244,250,214,.55); margin: 0 0 1.2rem; }
+  .info { list-style: none; margin: 0; padding: 0; }
+  .info li { display: grid; grid-template-columns: 1.4rem 1fr; gap: .9rem; margin-bottom: 1.25rem; align-items: start; }
+  .info svg { width: 1.2rem; height: 1.2rem; color: #D6E6B4; margin-top: .2rem; }
+  .info b { display: block; font-weight: 400; font-size: 1.05rem; color: var(--cream); }
+  .info span { display: block; font-size: .86rem; color: rgba(244,250,214,.6); }
+  .info em { font-style: normal; color: #D6E6B4; }
+  .info a { color: #D6E6B4; text-decoration: none; font-size: 1.05rem; }
+  .info a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .work-row .work { margin-bottom: 0; }
+  .honors-block { border-left: 1px solid var(--line-light); }
+  @media (max-width: 860px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .honors-block { border-left: 0; border-top: 1px solid var(--line-light); }
+  }
   .btn-row { display: flex; flex-wrap: wrap; gap: .8rem; }
 
   .work { list-style: none; margin: 0 0 3rem; padding: 0; display: grid; gap: 1.6rem; }
@@ -118,14 +155,14 @@
   .honors li span { font-family: var(--serif); font-style: italic; font-size: 1.05rem; }
 
   /* ---------- research ---------- */
-  .framed { padding: var(--pad); }
+  .framed { padding: clamp(1.5rem, 3.5vw, 3rem) var(--pad); background: var(--cedar); }
   .frame {
-    position: relative; min-height: 72vh; display: grid; place-items: center;
+    position: relative; min-height: 40vh; display: grid; place-items: center;
     text-align: center; color: var(--cream); padding: 3rem clamp(1.25rem, 8vw, 7rem); overflow: hidden;
   }
   .frame > .photo { position: absolute; inset: 0; }
   .frame .inner { position: relative; z-index: 2; }
-  .frame h2 { font-size: clamp(2.6rem, 6vw, 4.6rem); margin-bottom: 1.4rem; }
+  .frame h2 { font-size: clamp(2.3rem, 5vw, 3.8rem); margin-bottom: 1rem; }
   .frame p { margin: 0 auto; font-size: clamp(1rem, 1.5vw, 1.15rem); }
 
   .project { display: grid; grid-template-columns: 1fr 1.5fr; min-height: 80vh; }
@@ -143,7 +180,8 @@
   .frame .areas {
     font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 2.1rem); max-width: none;
   }
-  .frame .areas b { font-weight: 400; white-space: nowrap; }
+  .frame .areas b { font-weight: 700; white-space: nowrap; letter-spacing: .01em; }
+  @media (max-width: 640px) { .frame .areas b { display: block; } .frame .areas span { display: none; } }
   .frame .areas span { font-size: .5em; vertical-align: middle; margin: 0 .7em; opacity: .85; }
 
   .other { background: var(--forest); color: var(--cream); padding: var(--pad); }
@@ -156,6 +194,44 @@
   .other-grid .when { display: block; font-family: var(--serif); font-style: italic; opacity: .75; margin-bottom: .6rem; }
   .other-grid p { font-size: .93rem; margin: 0 0 1rem; }
   .other-grid .btn-row { gap: .5rem; margin-top: auto; }
+
+  /* ---------- mentors & collaborators ---------- */
+  .people { background: var(--moss); color: var(--cream); padding: var(--pad); }
+  .people h2 { font-size: clamp(2.4rem, 5vw, 3.6rem); }
+  .people .label {
+    font-size: .78rem; letter-spacing: .22em; text-transform: uppercase; color: rgba(244,250,214,.7);
+    margin: 0 0 1.6rem; padding-bottom: .9rem; border-bottom: 1px solid var(--line-dark); font-weight: 400; max-width: none;
+  }
+  .people .label + .cards { margin-bottom: 3rem; }
+  .cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
+  @media (max-width: 1100px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .cards { grid-template-columns: 1fr; } }
+  .card {
+    display: flex; flex-direction: column; align-items: center; text-align: center; height: 100%;
+    background: rgba(0,0,0,.16); border: 1px solid var(--line-dark); border-radius: 8px;
+    padding: 2rem 1.4rem 1.8rem; text-decoration: none; color: inherit;
+  }
+  .card.lead { border-color: var(--sage); }
+  a.card { transition: border-color .2s ease, transform .2s ease; }
+  a.card:hover { border-color: var(--sage); transform: translateY(-2px); }
+  .card .icon {
+    width: 3.2rem; height: 3.2rem; border-radius: 50%; display: grid; place-items: center;
+    border: 1px solid var(--line-dark); color: var(--sage); margin-bottom: 1.3rem;
+  }
+  .card .icon svg { width: 1.35rem; height: 1.35rem; }
+  .card .role { font-size: .74rem; letter-spacing: .18em; text-transform: uppercase; color: var(--sage); margin-bottom: .6rem; }
+  .card h3 { font-size: 1.6rem; margin: 0 0 .5rem; }
+  .card .where { font-size: .9rem; line-height: 1.5; color: rgba(244,250,214,.72); }
+  .card .go { margin-top: .9rem; font-size: .8rem; letter-spacing: .08em; color: var(--sage); }
+  .card.has-photo { padding: 0; overflow: hidden; }
+  .site-btn {
+    margin-top: 1rem; width: 2.5rem; height: 2.5rem; border-radius: 50%; display: grid; place-items: center;
+    border: 1px solid var(--line-dark); color: var(--sage); transition: background .2s ease, color .2s ease, transform .2s ease;
+  }
+  .site-btn:hover, .site-btn:focus-visible { background: var(--cream); color: var(--forest); transform: translateY(-2px); outline: none; }
+  .site-btn svg { width: 1.15rem; height: 1.15rem; }
+  .card .face { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; }
+  .card-body { display: flex; flex-direction: column; align-items: center; padding: 1.4rem 1.2rem 1.6rem; }
 
   /* ---------- photos ---------- */
   .photos { background: var(--forest); color: var(--cream); padding: var(--pad); }
@@ -326,17 +402,45 @@
 <main>
 
 <!-- ================= ABOUT ================= -->
-<section class="split" id="about">
-  <div class="dark-block green">
-    <h2>Hi, I’m <em>Tawny</em></h2>
-    <p>I am a faculty member in the Biological Sciences Department at Butte College and a board member of the Friends of the Ahart Herbarium. I study how foliar fungal endophytes shape the fungal communities that decompose leaf litter.</p>
-    <p class="meta">M.S. Microbial Ecology, California State University, Chico</p>
-    <div class="photo portrait" role="img" aria-label="Tawny Bolinas on a trail through a redwood forest with ferns" style="--src:url('assets/img/portrait.jpg'); --pos:center 60%"></div>
-    <div class="btn-row">
-      <a class="pill" href="cv.pdf">Download CV</a>
+<section class="about" id="about">
+  <h2>About</h2>
+  <p class="eyebrow">Microbial Ecologist</p>
+  <hr class="rule">
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Hi! I’m a scientist and educator in the biological sciences. I teach biology as <strong>Associate Faculty at Butte College</strong> and serve on the board of the <strong>Friends of the Ahart Herbarium</strong>.</p>
+      <p>I started at Cuesta College, then earned a B.S. in Cellular and Molecular Biology and an <strong>M.S. in Microbial Ecology</strong> at California State University, Chico. My thesis examined how foliar fungal endophytes influence microbial community assembly and leaf litter decomposition.</p>
+      <p>In the classroom and lab, I focus on hands-on learning and accessible, student-centered science education. Through fellowships, university service, and outreach, I’ve also worked in science communication, mentoring, and lab management. I’m interested in using molecular and computational approaches to understand how microbial communities shape ecosystem function.</p>
+      <a class="pill" href="cv.pdf" target="_blank" rel="noopener">Download CV</a>
+      <div class="hobbies">
+        <p class="hobbies-label">Outside the lab</p>
+        <ul class="hobby-chips">
+          <li>Hiking</li>
+          <li>Yoga</li>
+          <li>Journaling + Reading</li>
+          <li>DIY Crafts</li>
+          <li>Baking (Sweets)</li>
+          <li>Watching Movies</li>
+        </ul>
+      </div>
     </div>
+    <aside class="about-side">
+      <div class="photo portrait" role="img" aria-label="Tawny Bolinas with an umbrella beside blue hydrangeas on a garden path" style="--src:url('assets/img/portrait.jpg'); --pos:46% 50%"></div>
+      <div class="info-card">
+        <p class="info-label">Info</p>
+        <ul class="info">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></svg><div><b>Associate Faculty, Biological Sciences</b><span><em>Butte College</em> · 2026–present</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v5"/></svg><div><b>M.S. Microbial Ecology</b><span>CSU Chico · 2025 · Distinction</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="5"/><path d="m9 13.5-1.5 7.5 4.5-2.5 4.5 2.5L15 13.5"/></svg><div><b>B.S. Cellular &amp; Molecular Biology</b><span>CSU Chico · 2022</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20c0-9 6-15 16-16-1 10-7 16-16 16z"/><path d="M4 20 14 10"/></svg><div><b>Board Member</b><span><em>Friends of the Ahart Herbarium</em> · 2026–present</span></div></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg><div><a href="mailto:bolinasta@butte.edu">bolinasta@butte.edu</a></div></li>
+        </ul>
+      </div>
+    </aside>
   </div>
+</section>
 
+<section class="split work-row">
   <div class="light-block">
     <h2><em>Current</em> Work</h2>
     <ul class="work">
@@ -350,6 +454,8 @@
       </a></li>
     </ul>
 
+  </div>
+  <div class="light-block honors-block">
     <div class="honors">
       <h3><em>Selected</em> honors</h3>
       <ul>
@@ -367,13 +473,69 @@
 <!-- ================= RESEARCH ================= -->
 <section class="framed" id="research">
   <div class="frame">
-    <div class="photo" role="img" aria-label="Mushrooms on the forest floor" style="--src:url('assets/img/mushroom.jpg')"></div>
-    <div class="shade" style="--shade:.38"></div>
+    <div class="photo" role="img" aria-label="Small mushrooms in sunlit redwood needle litter" style="--src:url('assets/img/mushroom.jpg'); --pos:center 62%"></div>
+    <div class="shade" style="--shade:.5"></div>
     <div class="inner">
       <h2>Research <em>focus</em></h2>
       <p class="areas"><b>Mycology</b> <span aria-hidden="true">●</span> <b>Community Ecology</b> <span aria-hidden="true">●</span> <b>Bioinformatics</b></p>
     </div>
   </div>
+</section>
+
+<!-- ================= MENTORS & COLLABORATORS ================= -->
+<section class="people" id="people">
+  <p class="eyebrow">People</p>
+  <h2>Mentors &amp; <em>Collaborators</em></h2>
+  <hr class="rule">
+
+  <p class="label">Advisors &amp; PIs</p>
+  <ul class="cards">
+    <li><div class="card has-photo lead">
+      <img class="face" src="assets/img/people/cobian.jpg" alt="Gerald Cobián reading a field guide to mushrooms" >
+      <div class="card-body">
+        <span class="role">Graduate &amp; Undergraduate PI</span>
+        <h3>Gerald M. Cobián</h3>
+        <span class="where">Cobián Lab · Biological Sciences<br>California State University, Chico</span>
+      </div>
+    </div></li>
+    <li><div class="card has-photo">
+      <img class="face" src="assets/img/people/kaczynski.jpg" alt="Kristen Kaczynski at a prescribed burn" >
+      <div class="card-body">
+        <span class="role">M.S. Committee Advisor</span>
+        <h3>Kristen Kaczynski</h3>
+        <span class="where">Applied Plant Ecology Lab · Earth &amp; Environmental Sciences<br>California State University, Chico</span>
+        <a class="site-btn" href="https://kristenkaczynski.weebly.com/" target="_blank" rel="noopener" aria-label="Applied Plant Ecology Lab website" title="Applied Plant Ecology Lab website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg></a>
+      </div>
+    </div></li>
+    <li><div class="card has-photo">
+      <img class="face" src="assets/img/people/griffin-nolan.jpg" alt="Portrait of Robert Griffin-Nolan" >
+      <div class="card-body">
+        <span class="role">M.S. Committee Advisor</span>
+        <h3>Robert Griffin-Nolan</h3>
+        <span class="where">Griffin-Nolan Lab · Biological Sciences<br>California State University, Chico</span>
+        <a class="site-btn" href="https://robertgriffin-nolan.weebly.com/" target="_blank" rel="noopener" aria-label="Griffin-Nolan Lab website" title="Griffin-Nolan Lab website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg></a>
+      </div>
+    </div></li>
+    <li><div class="card has-photo">
+      <img class="face" src="assets/img/people/cline.jpg" alt="Portrait of Troy Cline" >
+      <div class="card-body">
+        <span class="role">Co-PI · Wastewater</span>
+        <h3>Troy Cline</h3>
+        <span class="where">Biological Sciences<br>California State University, Chico</span>
+      </div>
+    </div></li>
+  </ul>
+
+  <p class="label">Collaborations</p>
+  <ul class="cards">
+    <li><div class="card">
+      <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20c0-9 6-15 16-16-1 10-7 16-16 16z"/><path d="M4 20 14 10"/></svg></span>
+      <span class="role">Field Research Site</span>
+      <h3>Big Chico Creek Ecological Reserve</h3>
+      <span class="where">Chico State Enterprises<br>Forest Ranch, California</span>
+      <a class="site-btn" href="https://www.csuchico.edu/bccer/" target="_blank" rel="noopener" aria-label="Big Chico Creek Ecological Reserve website" title="Big Chico Creek Ecological Reserve website"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg></a>
+    </div></li>
+  </ul>
 </section>
 
 <section class="project" id="thesis">
