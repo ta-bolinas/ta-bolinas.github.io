@@ -368,6 +368,26 @@
     .pill, .socials a, .gallery img, .lightbox img { transition: none; }
     .lightbox[open] .lb-stage { animation: none; }
   }
+  /* ---------- condensed spacing (tighter sections) ---------- */
+  :root { --pad: clamp(1.25rem, 4.2vw, 3.6rem); }
+  .hero { min-height: 86vh; min-height: 86svh; }
+  .frame { min-height: 32vh; }
+  @media (min-width: 861px) { .project { min-height: 58vh; } }
+  .rule { margin: 1.4rem 0; }
+  .about h2 { margin-bottom: 1rem; }
+  .about .rule { margin: .9rem 0 1.8rem; }
+  .split h2, .other h2, .outreach h2 { margin-bottom: 1.3rem; }
+  .work { gap: 1.1rem; }
+  .other-grid { gap: 1.8rem 1.8rem; }
+  .people .label { margin-bottom: 1.2rem; }
+  .people .label + .cards { margin-bottom: 2.2rem; }
+  .hobbies { margin-top: 1.8rem; }
+  .pubs h3 { margin-top: 1.8rem; }
+  details { margin-top: 1.8rem; }
+  .tabs { margin-bottom: 1.6rem; }
+  .press-card { padding: clamp(1.8rem, 4vw, 3rem) clamp(1.25rem, 5vw, 4rem); }
+  .contact h2 { margin-bottom: .8rem; }
+  .contact .inner > p { margin-bottom: 1.6rem; }
 </style>
 </head>
 <body>
