@@ -463,6 +463,80 @@
   .work-row .honors li { border-top-color: rgba(0,78,56,.18); color: #183028; }
   .work-row .honors li span { color: #846838; }
   @media (max-width: 860px) { .work-row .honors-block { border-left: 0; border-top: 3px solid #B79257; } }
+
+  /* ==========================================================
+     LIGHT WILLIAM & MARY PALETTE (whole page)
+     Based on W&M brand colors: Green #004E38, Gold #B79257 (text: #846838),
+     Dark Green #183028, Sage #B8DDB1, Silver #D8DCDB, Patina #76A190, River Blue #85B8C7.
+     Each section gets its own light tint so neighbors stay distinct.
+     ========================================================== */
+  :root {
+    --wm-green: #004E38; --wm-dark: #183028; --wm-gold: #846838; --wm-gold-line: #B79257;
+    --t-warm:   #F5F3EA;  /* warm white (About, Priority Effects, Publications) */
+    --t-sage:   #E4EFDF;  /* W&M Sage tint (Current Work, Press) */
+    --t-silver: #E7EAE9;  /* W&M Silver tint (Research focus, Photos) */
+    --t-gold:   #F3ECDF;  /* W&M Gold tint (Mentors, Outreach) */
+    --t-river:  #DDEBEF;  /* River Blue tint (Endophytes to Decomposers) */
+    --t-patina: #DCE9E2;  /* Patina tint (Other research) */
+    --wm-line:  rgba(0, 78, 56, .16);
+  }
+  body { background: var(--t-warm); color: var(--wm-dark); }
+
+  /* section backgrounds */
+  .about, .overlap.thesis, .pubs { background: var(--t-warm); }
+  .work-row .light-block, .press-wrap, .press-wrap.green { background: var(--t-sage); }
+  .framed { background: var(--t-silver); }
+  .people, .outreach { background: var(--t-gold); }
+  .overlap, .overlap.green-bg { background: var(--t-river); }
+  .other, .other.green { background: var(--t-patina); }
+  .photos { background: var(--t-silver); }
+
+  /* text on light sections */
+  .people, .overlap, .other, .photos, .outreach, .pubs { color: var(--wm-dark); }
+  .people h2, .overlap h2, .other h2, .photos h2, .outreach h2, .pubs h2, .about h2,
+  .people h3, .other-grid h3, .outreach-item h3 { color: var(--wm-green); }
+  .eyebrow, .people .label, .card .role, .card .note, .about .eyebrow,
+  .about-text .hobbies-label, .info-label, .pub .yr, .other-grid .when { color: var(--wm-gold); opacity: 1; }
+  .rule, .about .rule { background: var(--wm-gold-line); height: 2px; }
+  .people .label { border-bottom-color: var(--wm-line); }
+
+  /* buttons */
+  .pill, .pill.dark, .about-text .pill, .overlap.thesis .pill { background: var(--wm-green); color: #fff; }
+  .pill.ghost, .overlap.thesis .pill.ghost { background: transparent; color: var(--wm-green); box-shadow: inset 0 0 0 1px var(--wm-green); }
+  .pill.ghost:hover { background: var(--wm-green); color: #fff; }
+  .award, .overlap.thesis .award { border-color: var(--wm-gold-line); color: var(--wm-dark); }
+  .award span { color: var(--wm-gold); }
+
+  /* mentor and collaboration cards */
+  .card { background: rgba(255,255,255,.7); border-color: var(--wm-line); }
+  .card.lead { border: 2px solid var(--wm-gold-line); }
+  .card .where { color: rgba(24,48,40,.72); }
+  .card .icon { border-color: var(--wm-line); color: var(--wm-green); }
+  .site-btn { border-color: var(--wm-line); color: var(--wm-green); }
+  .site-btn:hover, .site-btn:focus-visible { background: var(--wm-green); color: #fff; }
+
+  /* research cards and side photos */
+  .other-grid article { border-top: 2px solid var(--wm-gold-line); }
+  .overlap-side img { border-color: var(--wm-line); }
+  .outreach-item { border-top-color: var(--wm-line); }
+  .pub, .list > .pub:last-child { border-color: var(--wm-line); }
+
+  /* photos */
+  .tab { color: var(--wm-dark); border-color: var(--wm-line); background: rgba(255,255,255,.5); }
+  .tab:hover { color: var(--wm-green); border-color: var(--wm-green); }
+  .tab[aria-pressed="true"] { background: var(--wm-green); border-color: var(--wm-green); color: #fff; }
+  .gallery button:focus-visible { outline-color: var(--wm-gold-line); }
+
+  /* press */
+  .press-list { background: rgba(255,255,255,.94); }
+
+  /* contact panel over the polaroids */
+  .contact .inner { background: rgba(245,243,234,.95); color: var(--wm-dark); border-color: var(--wm-gold-line); }
+  .contact h2 { color: var(--wm-green); }
+  .socials a { background: var(--wm-green); color: #fff; }
+  .socials a:hover, .socials a:focus-visible { background: var(--wm-gold-line); color: #fff; box-shadow: none; }
+
+  footer { background: var(--wm-green); color: var(--t-warm); }
 </style>
 </head>
 <body>
