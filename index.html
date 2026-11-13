@@ -454,13 +454,15 @@
   .about .info b { color: var(--ink); }
   .about .info span { color: rgba(11,11,9,.6); }
   .about-side .portrait { border: 1px solid var(--line-light); }
-  /* ---------- Current Work: slate blue from the top banner sky ---------- */
-  .work-row .light-block { background: #34506A; color: var(--cream); }
-  .work-row .work span { color: rgba(244,250,214,.75); opacity: 1; }
-  .work-row .honors-block { border-left-color: rgba(244,250,214,.18); }
-  .work-row .honors li { border-top-color: rgba(244,250,214,.18); }
-  .work-row .honors li span { color: #CFE0EA; }
-  @media (max-width: 860px) { .work-row .honors-block { border-top-color: rgba(244,250,214,.18); } }
+  /* ---------- Current Work: light William & Mary palette ---------- */
+  .work-row .light-block { background: #E4EFDF; color: #004E38; }   /* light tint of W&M Sage; text in W&M Green */
+  .work-row h2, .work-row .honors h3 { color: #004E38; }
+  .work-row .work strong { color: #183028; }
+  .work-row .work span { color: #846838; opacity: 1; }            /* W&M Gold (web-accessible) */
+  .work-row .honors-block { border-left: 3px solid #B79257; }      /* W&M Gold */
+  .work-row .honors li { border-top-color: rgba(0,78,56,.18); color: #183028; }
+  .work-row .honors li span { color: #846838; }
+  @media (max-width: 860px) { .work-row .honors-block { border-left: 0; border-top: 3px solid #B79257; } }
 </style>
 </head>
 <body>
