@@ -408,6 +408,15 @@
   .overlap-side img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 60% center; border-radius: 8px; border: 1px solid var(--line-dark); }
   .overlap-side .award { margin: 0; align-self: stretch; border-radius: 14px; }
   @media (max-width: 860px) { .overlap { grid-template-columns: 1fr; } .overlap-side { max-width: 26rem; } }
+
+  /* ---------- Priority Effects: corner photo + acknowledgement logos ---------- */
+  .overlap.thesis { background: var(--forest); }
+  @media (min-width: 861px) { .overlap.thesis { grid-template-columns: minmax(0, 1fr) minmax(16rem, 25rem); } }
+  .overlap.thesis .award { align-self: flex-start; display: inline-flex; }
+  .overlap.thesis .overlap-side img[src*="thesis-field"] { aspect-ratio: 1 / 1; object-position: center 45%; }
+  .acks { width: 100%; background: #F5F3EA; border-radius: 8px; padding: .9rem 1rem 1rem; }
+  .acks-label { color: var(--forest); font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; margin: 0 0 .6rem; }
+  .acks img { display: block; width: 100%; height: auto; border: 0; border-radius: 0; aspect-ratio: auto; }
 </style>
 </head>
 <body>
@@ -590,9 +599,8 @@
   </ul>
 </section>
 
-<section class="project" id="thesis">
-  <div class="photo" role="img" aria-label="A lone tree on a grassy hill" style="--src:url('assets/img/meadow.jpg'); --pos:50% 30%"></div>
-  <div class="dark-block">
+<section class="overlap thesis" id="thesis">
+  <div class="overlap-text">
     <h2>Priority <em>Effects</em></h2>
     <p class="meta">M.S. thesis · CSU Chico · 2023–2025 · Advisor: Dr. Gerald M. Cobián</p>
     <p class="award"><span>2026</span>Outstanding Master’s Thesis Award, Office of Graduate Studies</p>
@@ -603,6 +611,13 @@
       <a class="pill ghost" href="docs/poster-2025-thesis.pdf" target="_blank" rel="noopener">Poster (PDF)</a>
     </div>
   </div>
+  <aside class="overlap-side">
+    <img src="assets/img/thesis-field.jpg" alt="Setting out mesh litterbags under a valley oak at the field site">
+    <div class="acks">
+      <p class="acks-label">Acknowledgements</p>
+      <img src="assets/img/thesis-acknowledgements.png" alt="Logos: Big Chico Creek Ecological Reserve, Wildcat Data Hub, Friends of the Ahart Herbarium, CSU Chico Mycology, Adelante, NSF ACCESS, USDA NIFA, CSU Agricultural Research Institute, CSUBIOTECH, and ACES">
+    </div>
+  </aside>
 </section>
 
 <section class="overlap green-bg" id="overlap">
