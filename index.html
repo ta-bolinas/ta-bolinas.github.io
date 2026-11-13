@@ -246,8 +246,8 @@
   }
   .tab:hover { color: var(--cream); border-color: rgba(244,250,214,.45); }
   .tab[aria-pressed="true"] { background: #4B5E37; border-color: #4B5E37; color: var(--cream); }
-  .gallery { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, 1fr); gap: .45rem; }
-  @media (max-width: 1100px) { .gallery { grid-template-columns: repeat(5, 1fr); } }
+  .gallery { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: .45rem; }
+  @media (max-width: 1100px) { .gallery { grid-template-columns: repeat(6, 1fr); } }
   .gallery li[hidden] { display: none; }
   .gallery button { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; overflow: hidden; border-radius: 3px; }
   .gallery img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; transition: transform .4s ease, opacity .3s ease; }
@@ -896,7 +896,13 @@
       }
       order.forEach(function (li) { grid.appendChild(li); });
     }
-    arrange(true);
+    // "All" shows a random set of 6 photos (one row); the other tabs show every photo in that category
+    var ALL_COUNT = 6;
+    function showAll() {
+      arrange(true);
+      Array.prototype.slice.call(grid.children).forEach(function (li, i) { li.hidden = i >= ALL_COUNT; });
+    }
+    showAll();
 
     // Hide any tab (other than All) that has no photos yet
     tabs.forEach(function (t) {
@@ -904,8 +910,9 @@
       if (f !== 'all' && !items.some(function (li) { return li.dataset.cat === f; })) t.hidden = true;
       t.addEventListener('click', function () {
         tabs.forEach(function (o) { o.setAttribute('aria-pressed', String(o === t)); });
-        arrange(f === 'all');
-        items.forEach(function (li) { li.hidden = !(f === 'all' || li.dataset.cat === f); });
+        if (f === 'all') { showAll(); return; }
+        arrange(false);
+        items.forEach(function (li) { li.hidden = li.dataset.cat !== f; });
       });
     });
 
