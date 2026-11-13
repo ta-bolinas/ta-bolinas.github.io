@@ -428,6 +428,9 @@
   /* ---------- About: smaller photo, wider text ---------- */
   @media (min-width: 861px) { .about-grid { grid-template-columns: minmax(0, 1fr) minmax(15rem, 19rem); } }
   .about-side .portrait { aspect-ratio: 1 / 1; }
+  .skills { margin-top: 1.6rem; }
+  .about-text .skills-group { font-size: .9rem; font-style: italic; font-family: var(--serif); color: rgba(244,250,214,.85); margin: .2rem 0 .5rem; }
+  .skills .hobby-chips { margin-bottom: 1rem; }
 </style>
 </head>
 <body>
@@ -479,6 +482,32 @@
           <li>DIY Crafts</li>
           <li>Baking (Sweets)</li>
           <li>Watching Movies</li>
+        </ul>
+      </div>
+      <div class="hobbies skills">
+        <p class="hobbies-label">Skills</p>
+        <p class="skills-group">Wet lab</p>
+        <ul class="hobby-chips">
+          <li>Experimental design</li>
+          <li>PCR/qPCR</li>
+          <li>DNA/RNA extraction and purification</li>
+          <li>Next-generation sequencing library preparation</li>
+          <li>Culturing</li>
+          <li>Pipetting practices</li>
+          <li>Aseptic technique</li>
+          <li>Microscopy</li>
+          <li>Animal handling</li>
+        </ul>
+        <p class="skills-group">Dry lab</p>
+        <ul class="hobby-chips">
+          <li>Bioinformatics</li>
+          <li>Data analysis</li>
+          <li>R/RStudio</li>
+          <li>Python</li>
+          <li>ImageJ</li>
+          <li>Avenza Maps</li>
+          <li>Shell/Bash scripting</li>
+          <li>Remote high-performance computing</li>
         </ul>
       </div>
     </div>
