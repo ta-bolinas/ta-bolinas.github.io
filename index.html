@@ -425,6 +425,9 @@
   .acks { width: 100%; background: #F5F3EA; border-radius: 8px; padding: .9rem 1rem 1rem; }
   .acks-label { color: var(--forest); font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; margin: 0 0 .6rem; }
   .acks img { display: block; width: 100%; height: auto; border: 0; border-radius: 0; aspect-ratio: auto; }
+  /* ---------- About: smaller photo, wider text ---------- */
+  @media (min-width: 861px) { .about-grid { grid-template-columns: minmax(0, 1fr) minmax(15rem, 19rem); } }
+  .about-side .portrait { aspect-ratio: 1 / 1; }
 </style>
 </head>
 <body>
@@ -480,7 +483,7 @@
       </div>
     </div>
     <aside class="about-side">
-      <div class="photo portrait" role="img" aria-label="Tawny Bolinas with an umbrella beside blue hydrangeas on a garden path" style="--src:url('assets/img/portrait.jpg'); --pos:46% 50%"></div>
+      <div class="photo portrait" role="img" aria-label="Tawny Bolinas smiling in front of a large waterfall" style="--src:url('assets/img/portrait.jpg'); --pos:center 55%"></div>
       <div class="info-card">
         <p class="info-label">Info</p>
         <ul class="info">
