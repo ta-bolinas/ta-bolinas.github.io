@@ -397,6 +397,17 @@
     box-shadow: 0 10px 40px rgba(0,0,0,.25);
   }
   .contact h2 { font-size: clamp(2.6rem, 6vw, 4rem); }
+
+  /* ---------- Endophytes to Decomposers: text + corner photo ---------- */
+  .overlap {
+    background: var(--moss); color: var(--cream); padding: var(--pad);
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(15rem, 21rem); gap: clamp(1.8rem, 4vw, 3.5rem); align-items: start;
+  }
+  .overlap h2 { font-size: clamp(2.5rem, 5vw, 4.2rem); }
+  .overlap-side { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .overlap-side img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 60% center; border-radius: 8px; border: 1px solid var(--line-dark); }
+  .overlap-side .award { margin: 0; align-self: stretch; border-radius: 14px; }
+  @media (max-width: 860px) { .overlap { grid-template-columns: 1fr; } .overlap-side { max-width: 26rem; } }
 </style>
 </head>
 <body>
@@ -594,18 +605,18 @@
   </div>
 </section>
 
-<section class="project flip" id="overlap">
-  <div class="photo" role="img" aria-label="Autumn forest edge around a meadow" style="--src:url('assets/img/autumn.jpg'); --pos:30% center"></div>
-  <div class="dark-block green">
+<section class="overlap green-bg" id="overlap">
+  <div class="overlap-text">
     <h2>Endophytes to <em>Decomposers</em></h2>
     <p class="meta">Undergraduate research · CSU Chico · 2020–2022 · Advisor: Dr. Gerald M. Cobián</p>
-    <p class="award"><span>2022</span>People’s Choice Award, Undergraduate Research, College of Natural Sciences</p>
     <p>Foliar fungal endophytes colonize plant leaves without obvious harm to the host, and many are thought to be commensals that wait for leaves to senesce. Fungi are the primary decomposers of leaf litter, but how much endophyte and decay communities overlap is not well understood. To measure that overlap, fungal DNA was extracted from surface-sterilized canyon live oak (<em>Quercus chrysolepis</em>) leaves and litter at Big Chico Creek Ecological Reserve, and both communities were characterized with high-throughput amplicon sequencing and compared using alpha and beta diversity.</p>
     <p>Endophyte and decay communities differed significantly, with fewer than 25% of taxa occurring in both substrates. This partial overlap suggests that some foliar endophytes act as early colonizers and may influence the composition of leaf decay communities.</p>
-    <div class="btn-row">
-      <a class="pill" href="docs/poster-2022-oak-overlap.pdf" target="_blank" rel="noopener">Poster (PDF)</a>
-    </div>
   </div>
+  <aside class="overlap-side">
+    <img src="assets/img/overlap-poster.jpg" alt="Tawny Bolinas beside her poster on community overlap between foliar fungal endophytes and leaf decay fungi">
+    <p class="award"><span>2022</span>People’s Choice Award, Undergraduate Research, College of Natural Sciences</p>
+    <a class="pill" href="docs/poster-2022-oak-overlap.pdf" target="_blank" rel="noopener">Poster (PDF)</a>
+  </aside>
 </section>
 
 <section class="other green">
