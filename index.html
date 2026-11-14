@@ -545,6 +545,8 @@
   .about-text p, .overlap-text p:not(.meta), .other-grid p, .outreach-item p, .pub p,
   .work-row .work strong, .work-row .honors li, .press-list li, .contact .inner > p { color: #1F3A30; }
   .card .where, .about .info span { color: rgba(24,48,40,.85); }
+  .about .about-name { font-size: clamp(1.05rem, 1.6vw, 1.3rem); letter-spacing: .2em; }
+  .about-side .about-cv { display: block; text-align: center; margin-top: 1rem; background: var(--wm-green); color: #fff; }
 </style>
 </head>
 <body>
@@ -576,7 +578,7 @@
 <!-- ================= ABOUT ================= -->
 <section class="about" id="about">
   <h2>About</h2>
-  <p class="eyebrow">Tawny A. Bolinas</p>
+  <p class="eyebrow about-name">Tawny A. Bolinas</p>
   <hr class="rule">
   <div class="about-grid">
     <div class="about-text">
@@ -584,7 +586,6 @@
       <p>I started at Cuesta College, then earned a B.S. in Cellular and Molecular Biology and an <strong>M.S. in Microbial Ecology</strong> at California State University, Chico. My thesis examined how foliar fungal endophytes influence microbial community assembly and leaf litter decomposition.</p>
       <p>At William &amp; Mary, I’ll join Dr. Geoffrey Zahn’s TIDAL Lab (Translational Insights into microbial Diversity, Assembly, &amp; Linkages), which studies microbial community assembly, microbiome transplantation, and marine fungi. My Ph.D. research will focus on <strong>marine fungal ecology</strong>, using graph neural networks (GNNs) to study the diversity, distribution, and ecological roles of marine fungi.</p>
       <p>In the classroom and lab, I focus on hands-on learning and accessible, student-centered science education. Through fellowships, university service, and outreach, I’ve also worked in science communication, mentoring, and lab management.</p>
-      <a class="pill" href="cv.pdf" target="_blank" rel="noopener">Download CV</a>
       <div class="hobbies">
         <p class="hobbies-label">Outside the lab</p>
         <ul class="hobby-chips">
@@ -635,6 +636,7 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg><div><a href="mailto:bolinasta@butte.edu">bolinasta@butte.edu</a></div></li>
         </ul>
       </div>
+      <a class="pill about-cv" href="cv.pdf" target="_blank" rel="noopener">Download CV</a>
     </aside>
   </div>
 </section>
@@ -1037,7 +1039,7 @@
   <div class="shade" style="--shade:.15"></div>
   <div class="inner">
     <h2>Say <em>hello</em></h2>
-    <p>For research questions, collaboration, or mentoring, reach me through the links below.</p>
+    <p>For questions, collaboration, or mentoring, reach me through the links below.</p>
     <ul class="socials">
       <li><a href="mailto:bolinasta@butte.edu" title="Email: bolinasta@butte.edu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>
