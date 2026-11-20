@@ -554,6 +554,16 @@
     .frame .areas b { display: inline; }
     .frame .areas span { display: inline; margin: 0 .45em; }
   }
+  /* ---------- Say hello: smaller ---------- */
+  .contact { padding: clamp(1.8rem, 4vw, 3rem) var(--pad); }
+  .contact .inner { max-width: 32rem; padding: clamp(1.2rem, 2.5vw, 1.7rem) clamp(1rem, 3vw, 2rem); }
+  .contact h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: .5rem; }
+  .contact .inner > p { font-size: .92rem; margin-bottom: 1.1rem; }
+  .socials { gap: .7rem; }
+  .socials a { width: 2.8rem; height: 2.8rem; }
+  .socials svg { width: 1.15rem; height: 1.15rem; }
+  .socials .txt { font-size: .7rem; }
+  @media (max-width: 480px) { .socials { gap: .45rem; } .socials a { width: 2.55rem; height: 2.55rem; } }
 </style>
 </head>
 <body>
