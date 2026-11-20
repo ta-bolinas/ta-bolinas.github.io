@@ -547,6 +547,13 @@
   .card .where, .about .info span { color: rgba(24,48,40,.85); }
   .about .about-name { font-size: clamp(1.05rem, 1.6vw, 1.3rem); letter-spacing: .2em; }
   .about-side .about-cv { display: block; text-align: center; margin-top: 1rem; background: var(--wm-green); color: #fff; }
+  /* Research focus areas: one tight line on phones */
+  @media (max-width: 640px) {
+    .frame { padding-left: .75rem; padding-right: .75rem; }
+    .frame .areas { font-size: .95rem; white-space: nowrap; }
+    .frame .areas b { display: inline; }
+    .frame .areas span { display: inline; margin: 0 .45em; }
+  }
 </style>
 </head>
 <body>
