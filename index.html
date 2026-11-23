@@ -562,18 +562,27 @@
   @media (max-width: 480px) { .socials { gap: .45rem; } .socials a { width: 2.55rem; height: 2.55rem; } }
   .contact-email { color: var(--wm-green); text-decoration: none; font-size: 1rem; }
   .contact-email:hover { text-decoration: underline; text-underline-offset: 3px; }
-  /* iNaturalist observations */
-  .inat { margin-top: 2rem; }
-  .inat-grid { list-style: none; margin: 0 0 .9rem; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .6rem; }
+  /* iNaturalist section */
+  .inat { background: var(--t-sage); color: var(--wm-dark); padding: var(--pad); }
+  .inat h2 { font-size: clamp(3rem, 7vw, 5.2rem); color: var(--wm-green); }
+  .inat-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem; margin-bottom: 1.6rem; }
+  .inat-stats { display: flex; gap: 2.2rem; margin: 0; padding: 0; list-style: none; }
+  .inat-stats:empty { display: none; }
+  .inat-stats b { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(1.9rem, 3.5vw, 2.6rem); line-height: 1; color: var(--wm-green); }
+  .inat-stats span { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--wm-gold); }
+  .inat-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1rem .8rem; }
   .inat-grid:empty { display: none; }
   .inat-grid a { display: block; text-decoration: none; color: inherit; }
-  .inat-grid img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 6px; border: 1px solid var(--wm-line); background: var(--t-silver); }
-  .inat-grid a:hover img, .inat-grid a:focus-visible img { outline: 2px solid var(--wm-gold-line); outline-offset: 2px; }
-  .inat-grid .nm { display: block; margin-top: .35rem; font-size: .78rem; line-height: 1.3; color: #1F3A30; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .inat-grid .sci { display: block; font-family: var(--serif); font-style: italic; font-size: .82rem; line-height: 1.2; color: var(--wm-gold); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .inat-link { font-size: .9rem; color: var(--wm-green); text-decoration: none; border-bottom: 1px solid var(--wm-gold-line); padding-bottom: 1px; }
-  .inat-link:hover { color: var(--wm-dark); border-bottom-color: var(--wm-green); }
-  @media (max-width: 640px) { .inat-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .inat-grid img { display: block; width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 6px; border: 1px solid var(--wm-line); background: var(--t-silver); transition: transform .25s ease; }
+  .inat-grid a:hover img, .inat-grid a:focus-visible img { transform: scale(1.03); outline: 2px solid var(--wm-gold-line); outline-offset: 2px; }
+  .inat-grid .nm, .inat-grid .sci, .inat-grid .dt { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .inat-grid .nm { margin-top: .45rem; font-size: .88rem; line-height: 1.3; color: #1F3A30; }
+  .inat-grid .sci { font-family: var(--serif); font-style: italic; font-size: .92rem; line-height: 1.25; color: var(--wm-gold); }
+  .inat-grid .dt { font-size: .74rem; color: rgba(24,48,40,.6); margin-top: .1rem; }
+  .inat-note { margin: 0; font-size: .95rem; color: #1F3A30; }
+  .inat-note:empty { display: none; }
+  @media (max-width: 1000px) { .inat-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @media (max-width: 640px) { .inat-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem .5rem; } .inat-grid .dt { display: none; } .inat-grid li:nth-child(n+10) { display: none; } .inat-stats { gap: 1.6rem; } }
 </style>
 </head>
 <body>
@@ -592,6 +601,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#research">Research</a></li>
       <li><a href="#photos">Photos</a></li>
+      <li><a href="#inaturalist">iNaturalist</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -612,11 +622,6 @@
       <p>I’m a first-generation immigrant from the Philippines. I started at Cuesta College, then earned a B.S. in Cellular and Molecular Biology and an <strong>M.S. in Microbial Ecology</strong> at California State University, Chico. My thesis examined how foliar fungal endophytes influence microbial community assembly and leaf litter decomposition.</p>
       <p>At William &amp; Mary, I’ll join Dr. Geoffrey Zahn’s TIDAL Lab (Translational Insights into microbial Diversity, Assembly, &amp; Linkages), which studies microbial community assembly, microbiome transplantation, and marine fungi. My Ph.D. research will focus on <strong>community assembly</strong> using graph neural networks (GNNs) to study the diversity, distribution, and ecological roles of marine microbial communities.</p>
       <p>In the classroom and lab, I focus on hands-on learning and accessible, student-centered science education. Through fellowships, university service, and outreach, I’ve also worked in science communication, mentoring, and lab management.</p>
-      <div class="inat" id="inat">
-        <p class="hobbies-label">Recent iNaturalist observations</p>
-        <ul class="inat-grid" aria-live="polite"></ul>
-        <a class="inat-link" href="https://www.inaturalist.org/people/tawnbolinas" target="_blank" rel="noopener">View my iNaturalist profile <span aria-hidden="true">↗</span></a>
-      </div>
       <div class="hobbies">
         <p class="hobbies-label">Outside the lab</p>
         <ul class="hobby-chips">
@@ -956,6 +961,20 @@
   <p class="lb-count" aria-live="polite"></p>
 </dialog>
 
+<!-- ================= iNATURALIST =================
+     Loads the 12 most recent observations from iNaturalist each time the page opens. -->
+<section class="inat" id="inaturalist">
+  <p class="eyebrow">Community science</p>
+  <h2>iNaturalist</h2>
+  <hr class="rule">
+  <div class="inat-head">
+    <ul class="inat-stats" aria-live="polite"></ul>
+    <a class="pill" href="https://www.inaturalist.org/users/9914585" target="_blank" rel="noopener">View my iNaturalist profile</a>
+  </div>
+  <ul class="inat-grid" aria-label="Recent iNaturalist observations"></ul>
+  <p class="inat-note"></p>
+</section>
+
 <!-- ================= PUBLICATIONS ================= -->
 <section class="pubs" id="publications">
   <h2>Publications &amp; <em>Presentations</em></h2>
@@ -1154,21 +1173,33 @@
     });
   })();
   (function () {
-    var box = document.getElementById('inat'); if (!box || !window.fetch) return;
-    var grid = box.querySelector('.inat-grid'), link = box.querySelector('.inat-link');
-    var url = 'https://api.inaturalist.org/v1/observations?user_login=tawnbolinas&photos=true&per_page=6&order_by=created_at&order=desc';
+    var sec = document.getElementById('inaturalist'); if (!sec || !window.fetch) return;
+    var grid = sec.querySelector('.inat-grid'), stats = sec.querySelector('.inat-stats'), note = sec.querySelector('.inat-note');
+    var api = 'https://api.inaturalist.org/v1/', user = 'user_id=9914585';
     function esc(t) { return String(t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
-    fetch(url).then(function (r) { return r.ok ? r.json() : Promise.reject(); }).then(function (d) {
-      var obs = (d.results || []).filter(function (o) { return o.photos && o.photos.length; }).slice(0, 6);
+    function get(path) { return fetch(api + path).then(function (r) { return r.ok ? r.json() : Promise.reject(); }); }
+    function day(d) { if (!d) return ''; var x = new Date(d + 'T12:00:00'); return isNaN(x) ? '' : x.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
+    function fail() { note.textContent = 'Recent observations couldn’t load right now. They’re all on my iNaturalist profile.'; }
+    get('observations?' + user + '&photos=true&per_page=12&order_by=created_at&order=desc').then(function (d) {
+      var obs = (d.results || []).filter(function (o) { return o.photos && o.photos.length; }).slice(0, 12);
+      if (!obs.length) { fail(); return; }
       grid.innerHTML = obs.map(function (o) {
         var t = o.taxon || {}, sci = t.name || '', common = t.preferred_common_name || o.species_guess || sci || 'Unidentified';
+        common = common.charAt(0).toUpperCase() + common.slice(1);
         var img = o.photos[0].url.replace('/square.', '/medium.');
-        var href = 'https://www.inaturalist.org/observations/' + o.id;
-        return '<li><a href="' + href + '" target="_blank" rel="noopener"><img src="' + esc(img) + '" alt="' + esc(common) + '" loading="lazy">' +
-          '<span class="nm">' + esc(common.charAt(0).toUpperCase() + common.slice(1)) + '</span>' + (sci && sci !== common ? '<span class="sci">' + esc(sci) + '</span>' : '') + '</a></li>';
+        return '<li><a href="https://www.inaturalist.org/observations/' + encodeURIComponent(o.id) + '" target="_blank" rel="noopener">' +
+          '<img src="' + esc(img) + '" alt="' + esc(common) + '" loading="lazy">' +
+          '<span class="nm">' + esc(common) + '</span>' +
+          (sci && sci !== common ? '<span class="sci">' + esc(sci) + '</span>' : '') +
+          '<span class="dt">' + esc(day(o.observed_on)) + '</span></a></li>';
       }).join('');
-      if (d.total_results > 6) link.firstChild.nodeValue = 'View all ' + d.total_results + ' observations on iNaturalist ';
-    }).catch(function () {});
+      var obsCount = d.total_results;
+      get('observations/species_counts?' + user + '&per_page=1').then(function (s) { return s.total_results; }, function () { return null; }).then(function (sp) {
+        var h = '<li><b>' + Number(obsCount).toLocaleString() + '</b><span>Observations</span></li>';
+        if (sp != null) h += '<li><b>' + Number(sp).toLocaleString() + '</b><span>Species</span></li>';
+        stats.innerHTML = h;
+      });
+    }).catch(fail);
   })();
 </script>
 
