@@ -563,7 +563,7 @@
   .contact-email { color: var(--wm-green); text-decoration: none; font-size: 1rem; }
   .contact-email:hover { text-decoration: underline; text-underline-offset: 3px; }
   /* iNaturalist section */
-  .inat { background: var(--t-sage); color: var(--wm-dark); padding: var(--pad); }
+  .inat { background: var(--t-warm); color: var(--wm-dark); padding: var(--pad); }
   .inat h2 { font-size: clamp(3rem, 7vw, 5.2rem); color: var(--wm-green); }
   .inat-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem; margin-bottom: 1.6rem; }
   .inat-stats { display: flex; gap: 2.2rem; margin: 0; padding: 0; list-style: none; }
@@ -599,9 +599,9 @@
     <a class="mark" href="#top">T. A. Bolinas</a>
     <ul>
       <li><a href="#about">About</a></li>
+      <li><a href="#inaturalist">iNaturalist</a></li>
       <li><a href="#research">Research</a></li>
       <li><a href="#photos">Photos</a></li>
-      <li><a href="#inaturalist">iNaturalist</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -679,6 +679,19 @@
       </ul>
     </div>
   </div>
+</section>
+
+<!-- ================= iNATURALIST =================
+     Loads the 6 most recent uploads from iNaturalist (profile 9914585) each time the page opens. -->
+<section class="inat" id="inaturalist">
+  <h2>iNaturalist</h2>
+  <hr class="rule">
+  <div class="inat-head">
+    <ul class="inat-stats" aria-live="polite"></ul>
+    <a class="pill" href="https://www.inaturalist.org/users/9914585" target="_blank" rel="noopener">View my iNaturalist profile</a>
+  </div>
+  <ul class="inat-grid" aria-label="Recent iNaturalist observations"></ul>
+  <p class="inat-note"></p>
 </section>
 
 <!-- ================= RESEARCH ================= -->
@@ -960,20 +973,6 @@
   <button class="lb-btn lb-next" aria-label="Next photo">›</button>
   <p class="lb-count" aria-live="polite"></p>
 </dialog>
-
-<!-- ================= iNATURALIST =================
-     Loads the 6 most recent uploads from iNaturalist (profile 9914585) each time the page opens. -->
-<section class="inat" id="inaturalist">
-  <p class="eyebrow">Community science</p>
-  <h2>iNaturalist</h2>
-  <hr class="rule">
-  <div class="inat-head">
-    <ul class="inat-stats" aria-live="polite"></ul>
-    <a class="pill" href="https://www.inaturalist.org/users/9914585" target="_blank" rel="noopener">View my iNaturalist profile</a>
-  </div>
-  <ul class="inat-grid" aria-label="Recent iNaturalist observations"></ul>
-  <p class="inat-note"></p>
-</section>
 
 <!-- ================= PUBLICATIONS ================= -->
 <section class="pubs" id="publications">
