@@ -962,7 +962,7 @@
 </dialog>
 
 <!-- ================= iNATURALIST =================
-     Loads the 6 most recent uploads from iNaturalist (user tawnbolinas) each time the page opens. -->
+     Loads the 6 most recent uploads from iNaturalist (profile 9914585) each time the page opens. -->
 <section class="inat" id="inaturalist">
   <p class="eyebrow">Community science</p>
   <h2>iNaturalist</h2>
@@ -1175,7 +1175,7 @@
   (function () {
     var sec = document.getElementById('inaturalist'); if (!sec || !window.fetch) return;
     var grid = sec.querySelector('.inat-grid'), stats = sec.querySelector('.inat-stats'), note = sec.querySelector('.inat-note');
-    var api = 'https://api.inaturalist.org/v1/', user = 'user_id=tawnbolinas&verifiable=any';
+    var api = 'https://api.inaturalist.org/v1/', user = 'user_id=9914585&verifiable=any';
     function esc(t) { return String(t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
     function get(path) { return fetch(api + path, { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : Promise.reject(); }); }
     function day(d) { if (!d) return ''; var x = new Date(d + 'T12:00:00'); return isNaN(x) ? '' : x.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
